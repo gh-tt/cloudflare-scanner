@@ -3,17 +3,17 @@ ipFilename: ip.txt
 #每个ip段选择的ip数量 如从111.111.111.X这个ip段中随机选择10个ip，该项必须，不能为0且小于等于255
 selectCountEveryIp: 1
 #ping测试最大协程数(默认100，数字越大越快，但可能影响结果准确性)
-pingRoutine: 200
+pingRoutine: 100
 #每个ip ping次数(默认10)
 pingCount: 10
 #下载测试最大协程数(默认1，数字越大可能影响测试结果)
-downloadRoutine: 3
+downloadRoutine: 1
 #需下载测试的ip节点个数(默认10)
-downloadTestCount: 1
+downloadTestCount: 10
 #下载测试时间(默认10,单位为秒)
 downloadSecond: 10
 #测试资源url，该资源需缓存在cloudflare上
-downloadUrl: https://storage.idx0.workers.dev/Images/public-notion-06b4a73f-0d4e-4b8f-b273-77becf84a0b3.png
+downloadUrl: https://dark-bird-768e.cf-scanner.workers.dev/images/scanner-test.png
 #筛选ip 最大ping延迟限制（默认200，单位ms）
 rttLimit: 200
 #筛选ip 最小ping收包率限制（默认0，0<=该值<=100）
@@ -24,9 +24,9 @@ isOutputTxt: false
 #修改dnspod所需配置
 dns:
   #是否需要修改dns，bool类型
-  modifyEnable: true
+  modifyEnable: false
   #筛选ip 最小速度限制（默认0，单位MB/s）
-  speedLimit: 1.5
+  speedLimit: 1
   #域名，必需项
   domain: example.com
   #dnspod令牌，必需项
