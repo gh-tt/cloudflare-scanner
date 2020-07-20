@@ -63,11 +63,15 @@ func ExportTxt(filepath string, data []CloudflareIPData) {
 		fmt.Println(str)
 		return
 	}
-	txt, _ := os.OpenFile(filepath, os.O_APPEND|os.O_WRONLY|os.O_CREATE, os.ModeAppend)
+	txt, err := os.OpenFile(filepath, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0660)
+	if err != nil {
+		fmt.Println("open result file err:", err)
+		return
+	}
 	defer txt.Close()
 	n, err := txt.WriteString(str)
-	if n != len(str) {
-		panic(err)
+	if err != nil {
+		fmt.Println("export result err: ", err, " len=", n)
 	}
 }
 
@@ -140,6 +144,6 @@ func sortBySpeedAndModifyDns(data []CloudflareIPData) {
 		_, _ = http.PostForm("https://dnsapi.cn/Record.Modify", form)
 		fmt.Println("修改dns成功")
 	} else {
-		fmt.Println("ip不符合要求,修改dns失败:",ip)
+		fmt.Println("ip不符合要求,修改dns失败:", ip)
 	}
 }
