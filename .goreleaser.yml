@@ -27,6 +27,9 @@ builds:
       - mips64le
     gomips:
       - hardfloat
+    ignore:
+      - goos: freebsd
+        goarch: arm64
 archives:
   -
     replacements:
