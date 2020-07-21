@@ -17,6 +17,7 @@ type Config struct {
 	rttLimit           float64
 	recvRateLimit      float64
 	isOutputTxt        bool
+	outputCount        int
 }
 
 type DnsConfig struct {
@@ -76,11 +77,14 @@ func newConfig() *Config {
 	if recvRateLimit <= 0 || recvRateLimit > 100 {
 		recvRateLimit = 0
 	}
-	ipFilename :=viper.GetString("ipFilename")
-	if ipFilename=="" {
+	ipFilename := viper.GetString("ipFilename")
+	if ipFilename == "" {
 		ipFilename = "ip.txt"
 	}
-
+	outputCount := viper.GetInt("outputCount")
+	if outputCount <= 0 {
+		outputCount = 5
+	}
 	return &Config{
 		selectCountEveryIp: viper.GetInt("selectCountEveryIp"),
 		ipFilename:         ipFilename,
@@ -93,6 +97,7 @@ func newConfig() *Config {
 		rttLimit:           rttLimit,
 		recvRateLimit:      recvRateLimit,
 		isOutputTxt:        viper.GetBool("isOutputTxt"),
+		outputCount:        outputCount,
 	}
 }
 func newDnsConfig() *DnsConfig {

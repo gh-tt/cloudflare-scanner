@@ -14,7 +14,7 @@ import (
 )
 
 const defaultTcpPort = 443
-const tcpConnectTimeout = time.Millisecond * 350
+const tcpConnectTimeout = time.Millisecond * 450
 const failTime = 4
 
 type CloudflareIPData struct {
@@ -53,8 +53,8 @@ func (cf *CloudflareIPData) toString() []string {
 }
 
 func ExportTxt(filepath string, data []CloudflareIPData) {
-	if len(data) > 5 {
-		data = data[:5]
+	if len(data) > Conf.outputCount {
+		data = data[:Conf.outputCount]
 	}
 	exportData := convertExportData(data)
 	t := time.Now()

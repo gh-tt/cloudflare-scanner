@@ -18,8 +18,10 @@ downloadUrl: https://dark-bird-768e.cf-scanner.workers.dev/images/scanner-test.p
 rttLimit: 200
 #筛选ip 最小ping收包率限制（默认0，0<=该值<=100）
 recvRateLimit: 90
-#是否输出前5个ip数据到txt文件
+#是否输出前 n 个ip数据到txt文件
 isOutputTxt: true
+#输出ip数据到结果的个数(默认只输出前5个数据)
+outputCount: 5
 
 #修改dnspod所需配置
 dns:
